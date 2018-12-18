@@ -5,7 +5,7 @@ class UI {
      init() {
           this.printCryptoCurrencies();
      }
-     // Prints the <option> for the form
+    
      printCryptoCurrencies() {
           cryptoAPI.getCryptoCurrenciesList()
                .then(data => {
@@ -29,33 +29,29 @@ class UI {
      printMessage(message, className) {
           const div = document.createElement('div');
 
-          // add the classes
+       
           div.className = className;
-          // add the message
+         
           div.appendChild(document.createTextNode(message));
 
           const messagesDiv = document.querySelector('.messages');
 
           messagesDiv.appendChild(div);
 
-          // Remove the message
           setTimeout(()  => {
                document.querySelector('.messages div').remove();
           }, 3000); 
      }
 
-     // Prints the result of the valuation / rate
      displayResult(result, currency) {
 
-          console.log(result);
-          // Read the currency
+//           console.log(result);
           let currencyName;
+          
           currencyName = 'price_' + currency.toLowerCase();
-          // read the result from the object
           const value = result[currencyName];
 
          
-          // Remove the previous result
           const prevResult = document.querySelector('#result > div');
           if(prevResult) {
                prevResult.remove();
@@ -76,21 +72,17 @@ class UI {
                </div>
           `;
 
-          // Print the spinner
           this.showSpinner();
 
-          // After 3 seconds print the result and remove the spinner
           setTimeout(() => {
-               // Print the result
                const divResult = document.querySelector('#result');
+               
                divResult.innerHTML = HTMLTemplate;
 
-               // Hide Spinner
                document.querySelector('.spinner img').remove();
           }, 3000); 
      }
 
-     // Prints the spinner
      showSpinner() {
           const spinnerGIF = document.createElement('img');
           spinnerGIF.src = 'img/spinner.gif';
